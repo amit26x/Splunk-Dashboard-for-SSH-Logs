@@ -1,28 +1,28 @@
 # Splunk-Dashboard-for-SSH-Logs
 In this project, you'll build a Splunk dashboard for monitoring SSH logs. The dashboard will visualize login attempts, failed connections, and brute force attacks. You will create panels for SSH activity summaries and authentication trends. Geo-location analysis will highlight brute force origins. A shared time range filter will allow dynamic data exploration.
 
-Objective
-Lab Set up
-Task0: Setting up Time Range
+**Objective
+Lab Set up**
+**Task0: Setting up Time Range**
 Add Time Range Button
 Click on Add Input
 Select Time and click on pencil icon
 Set Label to Time Range and Token time_range
 Again Add Input
 Select Submit
-Note: For all future panel, set the time to time_range for consistency.
+**Note:** For all future panel, set the time to time_range for consistency.
 
-Task1: Authentication Overview Panels
-Goal: Give a quick summary of SSH activity.
+**Task1: Authentication Overview Panels
+Goal: Give a quick summary of SSH activity.**
 Total SSH Events
 Click on Add Panel
 Under New, choose Single Value
 Use Shared Time Picker time_range
 Set Content Title to "Total SSH Events"
 Enter the Search String as below
-source="ssh_logs.json" host="LinuxServer" sourcetype="_json"
+**source="ssh_logs.json" host="LinuxServer" sourcetype="_json"
  | stats count AS "Total SSH Events"
-Successful Logins
+Successful Logins**
 Click on Add Panel
 
 Under New, choose Single Value
