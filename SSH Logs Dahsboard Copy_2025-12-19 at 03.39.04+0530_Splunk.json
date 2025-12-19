@@ -1,0 +1,407 @@
+{
+  "visualizations": {
+    "viz_bhnWpC7t": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "backgroundColor": "> majorValue | rangeValue(convertedColorRange)"
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 100,
+            "value": "#1182f3"
+          },
+          {
+            "from": 70,
+            "to": 100,
+            "value": "#f1813f"
+          },
+          {
+            "from": 30,
+            "to": 70,
+            "value": "#f8be34"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "value": "#0877a6"
+          },
+          {
+            "to": 0,
+            "value": "#53a051"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_xYnkNKo0"
+      },
+      "title": "Total SSH Events"
+    },
+    "viz_6bxL8pHv": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "backgroundColor": "> majorValue | rangeValue(convertedColorRange)"
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 100,
+            "value": "#118832"
+          },
+          {
+            "from": 70,
+            "to": 100,
+            "value": "#f1813f"
+          },
+          {
+            "from": 30,
+            "to": 70,
+            "value": "#f8be34"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "value": "#0877a6"
+          },
+          {
+            "to": 0,
+            "value": "#118832"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_fKVF7dMV"
+      },
+      "title": "Successful Logins"
+    },
+    "viz_hH5mbtmt": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "backgroundColor": "> majorValue | rangeValue(convertedColorRange)"
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 100,
+            "value": "#d41f1f"
+          },
+          {
+            "from": 70,
+            "to": 100,
+            "value": "#f1813f"
+          },
+          {
+            "from": 30,
+            "to": 70,
+            "value": "#f8be34"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "value": "#0877a6"
+          },
+          {
+            "to": 0,
+            "value": "#53a051"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_8m0GeOOP"
+      },
+      "title": "Failed Logins"
+    },
+    "viz_CZT2kZmI": {
+      "type": "splunk.singlevalue",
+      "options": {
+        "backgroundColor": "> majorValue | rangeValue(convertedColorRange)"
+      },
+      "context": {
+        "convertedColorRange": [
+          {
+            "from": 100,
+            "value": "#d94e17"
+          },
+          {
+            "from": 70,
+            "to": 100,
+            "value": "#f1813f"
+          },
+          {
+            "from": 30,
+            "to": 70,
+            "value": "#f8be34"
+          },
+          {
+            "from": 0,
+            "to": 30,
+            "value": "#0877a6"
+          },
+          {
+            "to": 0,
+            "value": "#53a051"
+          }
+        ]
+      },
+      "dataSources": {
+        "primary": "ds_qJ7R4Hzb"
+      },
+      "title": "Connection without Authentication"
+    },
+    "viz_vPgmjUHs": {
+      "type": "splunk.bar",
+      "options": {
+        "yAxisAbbreviation": "off",
+        "y2AxisAbbreviation": "off",
+        "showRoundedY2AxisLabels": false,
+        "legendTruncation": "ellipsisMiddle",
+        "showY2MajorGridLines": true
+      },
+      "dataSources": {
+        "primary": "ds_weYxwpV6"
+      },
+      "title": "Failed Logins by username"
+    },
+    "viz_ouuCWiLW": {
+      "type": "splunk.table",
+      "options": {
+        "drilldown": "none",
+        "showInternalFields": false
+      },
+      "dataSources": {
+        "primary": "ds_3hONiRXu"
+      },
+      "title": "Possible Brute Force b IP Address"
+    },
+    "viz_cX9FS9tC": {
+      "type": "splunk.map",
+      "options": {
+        "layers": [
+          {
+            "type": "choropleth",
+            "dataColors": "> areaValues | gradient(dataColorsGradientConfig)",
+            "choroplethOpacity": 0.75
+          }
+        ]
+      },
+      "context": {
+        "dataColorsGradientConfig": {
+          "colors": [
+            "#ffffff",
+            "#db5800"
+          ]
+        }
+      },
+      "dataSources": {
+        "primary": "ds_LzlbipJC"
+      },
+      "title": "Brute Force attack with geo-location"
+    }
+  },
+  "dataSources": {
+    "ds_xYnkNKo0": {
+      "type": "ds.search",
+      "options": {
+        "query": "source=\"ssh_logs.json\" host=\"LinuxServer\" sourcetype=\"_json\"\n | stats count AS \"Total SSH Events\"",
+        "queryParameters": {
+          "earliest": "$time_range.earliest$",
+          "latest": "$time_range.latest$"
+        }
+      },
+      "name": "Total SSH Events search"
+    },
+    "ds_fKVF7dMV": {
+      "type": "ds.search",
+      "options": {
+        "query": "source=\"ssh_logs.json\" host=\"LinuxServer\" sourcetype=\"_json\" event_type=\"Successful SSH Login\" \n| stats count AS \"Successful Logins\"",
+        "queryParameters": {
+          "earliest": "$time_range.earliest$",
+          "latest": "$time_range.latest$"
+        }
+      },
+      "name": "Successful Logins search"
+    },
+    "ds_8m0GeOOP": {
+      "type": "ds.search",
+      "options": {
+        "query": "source=\"ssh_logs.json\" host=\"LinuxServer\" sourcetype=\"_json\" event_type=\"Failed SSH Login\"\n| stats count AS \"Failed Login\"",
+        "queryParameters": {
+          "earliest": "$time_range.earliest$",
+          "latest": "$time_range.latest$"
+        }
+      },
+      "name": "Failed Logins search"
+    },
+    "ds_qJ7R4Hzb": {
+      "type": "ds.search",
+      "options": {
+        "query": "source=\"ssh_logs.json\" host=\"LinuxServer\" sourcetype=\"_json\" event_type=\"Connection without Authentication\"\n| stats count AS \"Connection without Authentication\"",
+        "queryParameters": {
+          "earliest": "$time_range.earliest$",
+          "latest": "$time_range.latest$"
+        }
+      },
+      "name": "Connection without Authentication search"
+    },
+    "ds_weYxwpV6": {
+      "type": "ds.search",
+      "options": {
+        "query": "source=\"ssh_logs_new.json\" host=\"LinuxServer\" sourcetype=\"_json\" event_type=\"Failed SSH Login\" | top username",
+        "queryParameters": {
+          "earliest": "$time_range.earliest$",
+          "latest": "$time_range.latest$"
+        }
+      },
+      "name": "Failed Logins by username search"
+    },
+    "ds_3hONiRXu": {
+      "type": "ds.search",
+      "options": {
+        "query": "source=\"ssh_logs_new.json\" host=\"LinuxServer\" sourcetype=\"_json\" event_type=\"Multiple Failed Authentication Attempts\" | top id.orig_h",
+        "queryParameters": {
+          "earliest": "$time_range.earliest$",
+          "latest": "$time_range.latest$"
+        }
+      },
+      "name": "Possible Brute Force b IP Address search"
+    },
+    "ds_LzlbipJC": {
+      "type": "ds.search",
+      "options": {
+        "query": "source=\"ssh_logs_new.json\" host=\"LinuxServer\" sourcetype=\"_json\" event_type=\"Multiple Failed Authentication Attempts\" \n| table id.orig_h\n| iplocation id.orig_h\n| stats count by Country\n| geom geo_countries featureIdField=\"Country\"",
+        "queryParameters": {
+          "earliest": "$time_range.earliest$",
+          "latest": "$time_range.latest$"
+        }
+      },
+      "name": "Brute Force attack with geo-location search"
+    }
+  },
+  "defaults": {
+    "dataSources": {
+      "ds.search": {
+        "options": {
+          "queryParameters": {}
+        }
+      }
+    },
+    "visualizations": {
+      "global": {
+        "showProgressBar": true
+      }
+    }
+  },
+  "inputs": {
+    "input_i5qzG96g": {
+      "type": "input.timerange",
+      "options": {
+        "token": "time_range",
+        "defaultValue": "-24h@h,now"
+      },
+      "title": "Time Range"
+    }
+  },
+  "layout": {
+    "options": {
+      "submitButton": true
+    },
+    "globalInputs": [
+      "input_i5qzG96g"
+    ],
+    "tabs": {
+      "items": [
+        {
+          "layoutId": "layout_1",
+          "label": "New tab"
+        }
+      ]
+    },
+    "layoutDefinitions": {
+      "layout_1": {
+        "type": "grid",
+        "structure": [
+          {
+            "item": "viz_bhnWpC7t",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "w": 360,
+              "h": 250
+            }
+          },
+          {
+            "item": "viz_6bxL8pHv",
+            "type": "block",
+            "position": {
+              "x": 360,
+              "y": 0,
+              "w": 360,
+              "h": 250
+            }
+          },
+          {
+            "item": "viz_hH5mbtmt",
+            "type": "block",
+            "position": {
+              "x": 720,
+              "y": 0,
+              "w": 360,
+              "h": 250
+            }
+          },
+          {
+            "item": "viz_CZT2kZmI",
+            "type": "block",
+            "position": {
+              "x": 1080,
+              "y": 0,
+              "w": 360,
+              "h": 250
+            }
+          },
+          {
+            "item": "viz_vPgmjUHs",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 250,
+              "w": 720,
+              "h": 250
+            }
+          },
+          {
+            "item": "viz_ouuCWiLW",
+            "type": "block",
+            "position": {
+              "x": 720,
+              "y": 250,
+              "w": 720,
+              "h": 250
+            }
+          },
+          {
+            "item": "viz_cX9FS9tC",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 500,
+              "w": 1440,
+              "h": 250
+            }
+          }
+        ],
+        "options": {
+          "width": 1440,
+          "height": 750
+        }
+      }
+    }
+  },
+  "description": "",
+  "title": "SSH Logs Dahsboard Copy",
+  "applicationProperties": {
+    "hideEdit": false,
+    "hideExport": false
+  }
+}
